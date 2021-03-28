@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Views\Home\Clientes.cshtml.cs" />
+      <Compile Remove="Views\Public\**" />
+      <Compile Remove="Controllers\PublicController.cs" />
+      <Compile Remove="ViewModels\Home\ClientesViewModel.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.13" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Views\Public\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Views\Public\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Views\Public\**" />
+      <Content Remove="Views\Shared\_PrivateLayout.cshtml" />
+      <Content Remove="Views\Shared\_PublicLayout.cshtml" />
+      <Content Remove="Views\Home\Clientes.cshtml" />
+      <Content Remove="Views\Home\Privacy.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Public\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ViewModels\Home" />
+      <Folder Include="ViewModels\User" />
+    </ItemGroup>
+
+</Project>
