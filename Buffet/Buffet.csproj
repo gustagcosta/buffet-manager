@@ -9,6 +9,20 @@
       <Compile Remove="Views\Public\**" />
       <Compile Remove="Controllers\PublicController.cs" />
       <Compile Remove="ViewModels\Home\ClientesViewModel.cs" />
+      <Compile Remove="Models\Buffet\Cliente\**" />
+      <Compile Remove="Models\Buffet\**" />
+      <Compile Remove="Models\TipoCliente.cs" />
+      <Compile Remove="Models\TipoEvento.cs" />
+      <Compile Remove="Models\TipoEvento\TipoEventoEntity.cs.cs" />
+      <Compile Remove="Models\Clienter\**" />
+      <Compile Remove="Models\Endereco.cs" />
+      <Compile Remove="Models\Local.cs" />
+      <Compile Remove="Models\Evento.cs" />
+      <Compile Remove="Models\Cliennte\**" />
+      <Compile Remove="Models\Convidado.cs" />
+      <Compile Remove="ViewModels\User\**" />
+      <Compile Remove="ViewModels\Home\**" />
+      <Compile Remove="Models\ClienteJuridico.cs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -22,10 +36,22 @@
 
     <ItemGroup>
       <EmbeddedResource Remove="Views\Public\**" />
+      <EmbeddedResource Remove="Models\Buffet\Cliente\**" />
+      <EmbeddedResource Remove="Models\Buffet\**" />
+      <EmbeddedResource Remove="Models\Clienter\**" />
+      <EmbeddedResource Remove="Models\Cliennte\**" />
+      <EmbeddedResource Remove="ViewModels\User\**" />
+      <EmbeddedResource Remove="ViewModels\Home\**" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="Views\Public\**" />
+      <None Remove="Models\Buffet\Cliente\**" />
+      <None Remove="Models\Buffet\**" />
+      <None Remove="Models\Clienter\**" />
+      <None Remove="Models\Cliennte\**" />
+      <None Remove="ViewModels\User\**" />
+      <None Remove="ViewModels\Home\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -34,6 +60,12 @@
       <Content Remove="Views\Shared\_PublicLayout.cshtml" />
       <Content Remove="Views\Home\Clientes.cshtml" />
       <Content Remove="Views\Home\Privacy.cshtml" />
+      <Content Remove="Models\Buffet\Cliente\**" />
+      <Content Remove="Models\Buffet\**" />
+      <Content Remove="Models\Clienter\**" />
+      <Content Remove="Models\Cliennte\**" />
+      <Content Remove="ViewModels\User\**" />
+      <Content Remove="ViewModels\Home\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -41,8 +73,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="ViewModels\Home" />
-      <Folder Include="ViewModels\User" />
+      <Folder Include="ViewModels" />
     </ItemGroup>
 
 </Project>

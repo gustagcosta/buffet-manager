@@ -1,11 +1,22 @@
 using System.Diagnostics;
+using Buffet.Data;
 using Buffet.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Buffet.Controllers
 {
     public class UserController : Controller
     {
+        private readonly ILogger<UserController> _logger;
+        private readonly DatabaseContext _databaseContext;
+
+        public UserController(ILogger<UserController> logger, DatabaseContext databaseContext)
+        {
+            _logger = logger;
+            _databaseContext = databaseContext;
+        }
+
         // GET
         public IActionResult Index()
         {
