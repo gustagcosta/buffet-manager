@@ -1,54 +1,79 @@
-using System.Diagnostics;
-using Buffet.Data;
-using Buffet.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Buffet.Models.Usuario;
+using Buffet.RequestModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace Buffet.Controllers
 {
     public class UserController : Controller
     {
-        private readonly ILogger<UserController> _logger;
-        private readonly DatabaseContext _databaseContext;
+        private readonly UsuarioService _usuarioService;
 
-        public UserController(ILogger<UserController> logger, DatabaseContext databaseContext)
+        public UserController(UsuarioService usuarioService)
         {
-            _logger = logger;
-            _databaseContext = databaseContext;
+            _usuarioService = usuarioService;
+        }
+
+        public async Task<ActionResult> Login(UserRegisterRequest request)
+        {
+            if (request.email == null)
+            {
+                TempData["error"] = "Email não informado!";
+                return Redirect("/Public/Login");
+            }
+
+            if (request.password == null)
+            {
+                TempData["error"] = "Senha não informada!";
+                return Redirect("/Public/Login");
+            }
+
+            try
+            {
+                await _usuarioService.AutenticarUsuario(request.email, request.password);
+                return Redirect("/Private/Index");
+            }
+            catch (Exception e)
+            {
+                TempData["error"] = e.Message;
+                return Redirect("/Public/Login");
+            }
         }
 
         // GET
-        public IActionResult Index()
+        public async Task<ActionResult> Register(UserRegisterRequest request)
         {
-            return View();
-        }
+            if (request.email == null)
+            {
+                TempData["error"] = "Email não informado!";
+                return Redirect("/Public/Register");
+            }
 
-        public IActionResult Help()
-        {
-            return View();
-        }
+            if (request.password == null)
+            {
+                TempData["error"] = "Senha não informada!";
+                return Redirect("/Public/Register");
+            }
 
-        public IActionResult Policy()
-        {
-            ViewBag.Layout = "_LayoutUser";
-            return View("~/Views/Home/Policy.cshtml");
-        }
+            if (request.password != request.passwordConfirm)
+            {
+                TempData["error"] = "Senhas não coincidem!";
+                return Redirect("/Public/Register");
+            }
 
-        public IActionResult Terms()
-        {
-            ViewBag.Layout = "_LayoutUser";
-            return View("~/Views/Home/Terms.cshtml");
-        }
-
-        public IActionResult Panel()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+            try
+            {
+                await _usuarioService.RegistrarUsuario(request.email, request.password);
+                TempData["mensagem"] = "Cadastrado com sucesso!";
+                return Redirect("/Public/Login");
+            }
+            catch (Exception e)
+            {
+                TempData["errors"] = e.Message;
+                return Redirect("/Public/Register");
+            }
         }
     }
 }

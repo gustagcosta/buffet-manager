@@ -1,51 +1,48 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using Buffet.Data;
+using Buffet.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Buffet.Models;
 
 namespace Buffet.Controllers
 {
-    public class HomeController : Controller
+    public class PrivateController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<PrivateController> _logger;
         private readonly DatabaseContext _databaseContext;
 
-        public HomeController(ILogger<HomeController> logger, DatabaseContext databaseContext)
+        public PrivateController(ILogger<PrivateController> logger, DatabaseContext databaseContext)
         {
-            _databaseContext = databaseContext;
             _logger = logger;
+            _databaseContext = databaseContext;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Login()
+        public IActionResult Help()
         {
             return View();
         }
 
         public IActionResult Policy()
         {
-            ViewBag.Layout = "_Layout";
-            return View();
-        }
-
-        public IActionResult Recovery()
-        {
-            return View();
-        }
-
-        public IActionResult Register()
-        {
-            return View();
+            ViewBag.Layout = "_LayoutPrivate";
+            return View("~/Views/Public/Policy.cshtml");
         }
 
         public IActionResult Terms()
         {
-            ViewBag.Layout = "_Layout";
+            ViewBag.Layout = "_LayoutPrivate";
+            return View("~/Views/Public/Terms.cshtml");
+        }
+
+        public IActionResult Panel()
+        {
             return View();
         }
 

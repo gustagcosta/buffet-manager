@@ -11,7 +11,7 @@ namespace Buffet.Models.Cliente
         [Required] public string Nome { get; set; }
         [Required] public TipoClienteEntity TipoCliente { get; set; }
         [Required] public string Email { get; set; }
-        [Required] public EnderecoEntity Endereco;
+        [Required] public EnderecoEntity Endereco { get; set; }
         [Required] public string Observacoes { get; set; }
         [Required] public DateTime CriadoEm { get; set; }
         [Required] public DateTime EditadoEm { get; set; }

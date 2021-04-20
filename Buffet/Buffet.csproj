@@ -5,75 +5,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="Views\Home\Clientes.cshtml.cs" />
-      <Compile Remove="Views\Public\**" />
-      <Compile Remove="Controllers\PublicController.cs" />
-      <Compile Remove="ViewModels\Home\ClientesViewModel.cs" />
-      <Compile Remove="Models\Buffet\Cliente\**" />
-      <Compile Remove="Models\Buffet\**" />
-      <Compile Remove="Models\TipoCliente.cs" />
-      <Compile Remove="Models\TipoEvento.cs" />
-      <Compile Remove="Models\TipoEvento\TipoEventoEntity.cs.cs" />
-      <Compile Remove="Models\Clienter\**" />
-      <Compile Remove="Models\Endereco.cs" />
-      <Compile Remove="Models\Local.cs" />
-      <Compile Remove="Models\Evento.cs" />
-      <Compile Remove="Models\Cliennte\**" />
-      <Compile Remove="Models\Convidado.cs" />
-      <Compile Remove="ViewModels\User\**" />
-      <Compile Remove="ViewModels\Home\**" />
-      <Compile Remove="Models\ClienteJuridico.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.13" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.13" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.4" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Remove="Views\Public\**" />
-      <EmbeddedResource Remove="Models\Buffet\Cliente\**" />
-      <EmbeddedResource Remove="Models\Buffet\**" />
-      <EmbeddedResource Remove="Models\Clienter\**" />
-      <EmbeddedResource Remove="Models\Cliennte\**" />
-      <EmbeddedResource Remove="ViewModels\User\**" />
-      <EmbeddedResource Remove="ViewModels\Home\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="Views\Public\**" />
-      <None Remove="Models\Buffet\Cliente\**" />
-      <None Remove="Models\Buffet\**" />
-      <None Remove="Models\Clienter\**" />
-      <None Remove="Models\Cliennte\**" />
-      <None Remove="ViewModels\User\**" />
-      <None Remove="ViewModels\Home\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Remove="Views\Public\**" />
-      <Content Remove="Views\Shared\_PrivateLayout.cshtml" />
-      <Content Remove="Views\Shared\_PublicLayout.cshtml" />
-      <Content Remove="Views\Home\Clientes.cshtml" />
-      <Content Remove="Views\Home\Privacy.cshtml" />
-      <Content Remove="Models\Buffet\Cliente\**" />
-      <Content Remove="Models\Buffet\**" />
-      <Content Remove="Models\Clienter\**" />
-      <Content Remove="Models\Cliennte\**" />
-      <Content Remove="ViewModels\User\**" />
-      <Content Remove="ViewModels\Home\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="Views\Public\Index.cshtml" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="ViewModels" />
     </ItemGroup>
 
 </Project>

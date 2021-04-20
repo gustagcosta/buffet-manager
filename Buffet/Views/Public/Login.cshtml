@@ -1,0 +1,27 @@
+@model Buffet.ViewModels.Public.LoginViewModel;
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="card mt-2">
+    <div class="card-body">
+        <div>
+            @if (Model.Error != null)
+            {
+                <p class="alert alert-danger">@Model.Error</p>
+            }
+        </div>
+        <form method="post" action="@Url.Action("Login", "User")">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" name="password" class="form-control" id="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Logar</button>
+        </form>
+    </div>
+</div>

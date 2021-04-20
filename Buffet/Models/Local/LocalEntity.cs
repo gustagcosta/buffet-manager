@@ -5,8 +5,8 @@ namespace Buffet.Models.Local
 {
     public class LocalEntity
     {
-        [Key] public int Id;
-        [Required] public string Descricao;
-        [Required] public EnderecoEntity Endereco;
+        [Key] public int Id { get; set; }
+        [Required] public string Descricao { get; set; }
+        [Required] public EnderecoEntity Endereco { get; set; }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Buffet.Models;
 using Buffet.Models.Cliente;
 using Buffet.Models.ClienteFisico;
@@ -9,11 +10,13 @@ using Buffet.Models.SituacaoConvidado;
 using Buffet.Models.SituacaoEvento;
 using Buffet.Models.TipoCliente;
 using Buffet.Models.TipoEvento;
+using Buffet.Models.Usuario;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Buffet.Data
 {
-    public class DatabaseContext : DbContext
+    public class DatabaseContext : IdentityDbContext<Usuario, Papel, Guid>
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
         public DbSet<ClienteEntity> Clientes { get; set; }

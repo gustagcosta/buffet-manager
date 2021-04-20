@@ -5,8 +5,8 @@ namespace Buffet.Models.ClienteFisico
 {
     public class ClienteFisicoEntity
     {
-        [Key] public int Id;
-        [Required] private ClienteEntity Cliente;
+        [Key] public int Id { get; set; }
+        [Required] private ClienteEntity Cliente { get; set; }
         [Required] public string Cnpj { get; set; }
     }
 }
