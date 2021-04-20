@@ -11,6 +11,10 @@
             {
                 <p class="alert alert-danger">@Model.Error</p>
             }
+            @if (Model.Mensagem != null)
+            {
+                <p class="alert alert-success">@Model.Mensagem</p>
+            }
         </div>
         <form method="post" action="@Url.Action("Login", "User")">
             <div class="form-group">

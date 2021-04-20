@@ -28,9 +28,10 @@ namespace Buffet.Controllers
 
         public IActionResult Login()
         {
-            LoginViewModel rvm = new LoginViewModel();
-            rvm.Error = (string) TempData["error"];
-            return View(rvm);
+            LoginViewModel lvm = new LoginViewModel();
+            lvm.Error = (string) TempData["error"];
+            lvm.Mensagem = (string) TempData["mensagem"];
+            return View(lvm);
         }
 
         public IActionResult Policy()
@@ -48,7 +49,7 @@ namespace Buffet.Controllers
         {
             RegisterViewModel rvm = new RegisterViewModel();
             rvm.Error = (string) TempData["error"];
-            rvm.Errors = (string) TempData["errors"];
+            rvm.Errors = (string[]) TempData["errors"];
             return View(rvm);
         }
 

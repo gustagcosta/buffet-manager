@@ -38,14 +38,14 @@ namespace Buffet.Models.Usuario
 
             if (!resultado.Succeeded)
             {
-                var ListaErros = "";
+                var listaErros = new List<string>();
 
                 foreach (var error in resultado.Errors)
                 {
-                    ListaErros += error.Description + " ";
+                    listaErros.Add(error.Description);
                 }
 
-                throw new Exception(ListaErros);
+                throw new CadastrarUsuarioException(listaErros);
             }
         }
     }

@@ -42,7 +42,6 @@ namespace Buffet.Controllers
             }
         }
 
-        // GET
         public async Task<ActionResult> Register(UserRegisterRequest request)
         {
             if (request.email == null)
@@ -69,9 +68,9 @@ namespace Buffet.Controllers
                 TempData["mensagem"] = "Cadastrado com sucesso!";
                 return Redirect("/Public/Login");
             }
-            catch (Exception e)
+            catch (CadastrarUsuarioException e)
             {
-                TempData["errors"] = e.Message;
+                TempData["errors"] = e.Erros;
                 return Redirect("/Public/Register");
             }
         }

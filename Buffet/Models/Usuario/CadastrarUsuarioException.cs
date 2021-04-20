@@ -7,9 +7,9 @@ namespace Buffet.Models.Usuario
 {
     public class CadastrarUsuarioException : Exception
     {
-        public IEnumerable<IdentityError> Erros { get; set; }
+        public List<string> Erros { get; set; }
 
-        public CadastrarUsuarioException(IEnumerable<IdentityError> erros)
+        public CadastrarUsuarioException(List<string> erros)
         {
             Erros = erros;
         }

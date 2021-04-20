@@ -23,24 +23,28 @@ namespace Buffet.Controllers
         {
             return View();
         }
-
+        
+        [Authorize]
         public IActionResult Help()
         {
             return View();
         }
-
+        
+        [Authorize]
         public IActionResult Policy()
         {
             ViewBag.Layout = "_LayoutPrivate";
             return View("~/Views/Public/Policy.cshtml");
         }
 
+        [Authorize]
         public IActionResult Terms()
         {
             ViewBag.Layout = "_LayoutPrivate";
             return View("~/Views/Public/Terms.cshtml");
         }
-
+        
+        [Authorize]
         public IActionResult Panel()
         {
             return View();
