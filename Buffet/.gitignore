@@ -2,6 +2,7 @@
 # compiled source #
 ###################
 appsettings.Development.json
+appsettings.json
 *.com
 *.class
 *.dll
