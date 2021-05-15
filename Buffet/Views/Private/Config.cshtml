@@ -4,16 +4,20 @@
 
 <div class="card mt-2">
     <div class="card-body">
-        <div class="row">
-            @* <div class="col text-center"> *@
-            @*     <a asp-controller="Config" asp-action="TipoEvento" class="w-75 btn btn-primary">Tipos de Eventos</a> *@
-            @* </div> *@
-            @* <div class="col text-center"> *@
-            @*     <a asp-controller="Config" asp-action="SituacaoEvento" class="w-75 btn btn-primary">Situações de Eventos</a>          *@
-            @* </div> *@
-            <div class="col text-center">
-                 <a asp-controller="SituacaoConvidado" asp-action="Index" class="w-75 btn btn-primary">Situações de Convidados</a>           
-            </div>
+        <h3>Configurações</h3>
+        <div class="list-group mt-3">
+            <a asp-controller="SituacaoEvento" onmouseover="setEffect(this)" onmouseleave="removeEffect(this)" asp-action="Index" class="list-group-item list-group-item-action">Situações de Eventos</a>
+            <a asp-controller="SituacaoConvidado" onmouseover="setEffect(this)" onmouseleave="removeEffect(this)" asp-action="Index" class="list-group-item list-group-item-action">Situações de Convidados</a>
+            <a asp-controller="TipoEvento" onmouseover="setEffect(this)" onmouseleave="removeEffect(this)" asp-action="Index" class="list-group-item list-group-item-action">Tipos de Eventos</a>
         </div>
     </div>
 </div>
+
+<script>
+    function setEffect (target) {
+        target.setAttribute("class", "list-group-item list-group-item-action active");
+    }
+    function removeEffect (target) {
+        target.setAttribute("class", "list-group-item list-group-item-action");
+    }
+</script>

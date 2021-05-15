@@ -26,5 +26,27 @@ namespace Buffet.Models.SituacaoConvidado
             _databaseContext.SituacoesConvidados.Add(sce);
             await _databaseContext.SaveChangesAsync();
         }
+
+        public async Task<SituacaoConvidadoEntity> getById(int id)
+        {
+            return await _databaseContext.SituacoesConvidados.FindAsync(id);
+        }
+
+        public async Task update(int id, string descricao)
+        {
+            SituacaoConvidadoEntity sce = new SituacaoConvidadoEntity();
+            sce.Descricao = descricao;
+            sce.Id = id;
+            _databaseContext.SituacoesConvidados.Update(sce);
+            await _databaseContext.SaveChangesAsync();
+        }
+
+        public async Task destroy(int id)
+        {
+            SituacaoConvidadoEntity sce = new SituacaoConvidadoEntity();
+            sce.Id = id;
+            _databaseContext.SituacoesConvidados.Remove(sce);
+            await _databaseContext.SaveChangesAsync();
+        }
     }
 }

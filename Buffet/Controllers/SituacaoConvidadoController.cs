@@ -29,26 +29,38 @@ namespace Buffet.Controllers
             return View("~/Views/Private/SituacaoConvidado/Index.cshtml", scvm);
         }
         
-        public async Task<IActionResult> Store(ConfigRequestStore crs)
+        public async Task<IActionResult> Store(string descricao, int id)
         {
-            await _situacaoConvidadoService.store(crs.descricao);
+            if (id == 0)
+            {
+                await _situacaoConvidadoService.store(descricao);
+            }
+            else
+            {
+                await _situacaoConvidadoService.update(id, descricao);
+            }
             return RedirectToAction("Index");
         }
         
-        public async Task<IActionResult> Edit()
+        public async Task<IActionResult> Edit(int id)
         {
-            // var situacoes = await _situacaoConvidadoService.getAll();
-            // var scvm = new IndexViewModel();
-            // scvm.Situacoes = situacoes;
-            return View("~/Views/Private/SituacaoConvidado/Index.cshtml");
+            var situacao = await _situacaoConvidadoService.getById(id);
+            var situacoes = await _situacaoConvidadoService.getAll();
+            var scvm = new IndexViewModel();
+            scvm.Situacoes = situacoes;
+            scvm.id = situacao.Id;
+            scvm.descricao = situacao.Descricao;
+            return View("~/Views/Private/SituacaoConvidado/Index.cshtml", scvm);
         }
         
-        public async Task<IActionResult> Destroy()
+        public async Task<IActionResult> Destroy(int id)
         {
-            // var situacoes = await _situacaoConvidadoService.getAll();
-            // var scvm = new IndexViewModel();
-            // scvm.Situacoes = situacoes;
-            return View("~/Views/Private/SituacaoConvidado/Index.cshtml");
+            await _situacaoConvidadoService.destroy(id);
+            var situacoes = await _situacaoConvidadoService.getAll();
+            var scvm = new IndexViewModel();
+            scvm.mensagem = "Deletado com sucesso!";
+            scvm.Situacoes = situacoes;
+            return View("~/Views/Private/SituacaoConvidado/Index.cshtml", scvm);
         }
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

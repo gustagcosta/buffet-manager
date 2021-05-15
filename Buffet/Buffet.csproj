@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
-
-    <ItemGroup>
+    
+     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.13" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.13" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13">
@@ -12,26 +12,6 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.4" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="Views\Private\Config.cshtml.cs" />
-      <Compile Remove="Views\Private\Config\**" />
-      <Compile Remove="Controllers\TipoEventoController.cs" />
-      <Compile Remove="Controllers\ConfigController.cs" />
-      <Compile Remove="RequestModels\ConfigRequest.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Remove="Views\Private\Config\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="Views\Private\Config\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Remove="Views\Private\Config\**" />
     </ItemGroup>
 
 </Project>

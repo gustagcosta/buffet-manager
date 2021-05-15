@@ -5,8 +5,10 @@ namespace Buffet.ViewModels.Private.SituacaoConvidado
 {
     public class IndexViewModel
     {
-        public string Error { get; set; }
-        public string Mensagem { get; set; }
+        public int id { get; set; }
+        public string descricao { get; set; }
+        public string mensagem { get; set; }
         public List<SituacaoConvidadoEntity> Situacoes { get; set; }
+        
     }
 }

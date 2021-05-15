@@ -1,7 +1,4 @@
 namespace Buffet.Models.TipoCliente
 {
-    public class TipoClienteService
-    {
-
-    }
+    public class TipoClienteService { }
 }
