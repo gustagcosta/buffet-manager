@@ -47,16 +47,6 @@
                 Recuperação de Conta
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" asp-controller="Public" asp-action="Terms">
-                Termos de Uso
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" asp-controller="Public" asp-action="Policy">
-                Política de Privacidade
-              </a>
-            </li>
           </ul>
         </div>
       </div>
@@ -65,7 +55,17 @@
     <main class="container">@RenderBody()</main>
 
     <footer class="border-top footer text-muted">
-      <div class="container">&copy; 2021 - Buffet</div>
+      <div class="container">
+        &copy; 2021 - Buffet
+        &nbsp; &nbsp;
+        <a class="link" asp-controller="Public" asp-action="Policy">
+          Política de Privacidade
+        </a>
+        &nbsp; &nbsp;
+        <a class="link" asp-controller="Public" asp-action="Terms">
+          Termos de Uso
+        </a>
+      </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

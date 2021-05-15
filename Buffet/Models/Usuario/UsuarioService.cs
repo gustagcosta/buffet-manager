@@ -25,16 +25,21 @@ namespace Buffet.Models.Usuario
                 throw new Exception("Usuário ou senha inválidos");
             }
         }
+        
+        public async Task DeslogarUsuario()
+        {
+            await _signInManager.SignOutAsync();
+        }
 
         public async Task RegistrarUsuario(string email, string senha)
         {
-            var NovoUsuario = new Usuario()
+            var novoUsuario = new Usuario()
             {
                 UserName = email,
                 Email = email
             };
 
-            var resultado = await _userManager.CreateAsync(NovoUsuario, senha);
+            var resultado = await _userManager.CreateAsync(novoUsuario, senha);
 
             if (!resultado.Succeeded)
             {

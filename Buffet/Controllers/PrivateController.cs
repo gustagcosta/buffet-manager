@@ -1,6 +1,9 @@
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Buffet.Data;
 using Buffet.Models;
+using Buffet.Models.SituacaoConvidado;
+using Buffet.Models.Usuario;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,11 +14,13 @@ namespace Buffet.Controllers
     {
         private readonly ILogger<PrivateController> _logger;
         private readonly DatabaseContext _databaseContext;
+        private readonly UsuarioService _usuarioService;
 
-        public PrivateController(ILogger<PrivateController> logger, DatabaseContext databaseContext)
+        public PrivateController(ILogger<PrivateController> logger, DatabaseContext databaseContext, UsuarioService usuarioService)
         {
             _logger = logger;
             _databaseContext = databaseContext;
+            _usuarioService = usuarioService;
         }
 
         [Authorize]
@@ -46,6 +51,19 @@ namespace Buffet.Controllers
         
         [Authorize]
         public IActionResult Panel()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await _usuarioService.DeslogarUsuario();
+            return Redirect("/Public/Login");
+        }
+        
+        [Authorize]
+        public IActionResult Config()
         {
             return View();
         }

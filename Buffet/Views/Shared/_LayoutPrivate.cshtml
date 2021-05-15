@@ -38,22 +38,27 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" asp-controller="Private" asp-action="Policy">
-                Politica de Privacidade
+              <a class="nav-link" asp-controller="Private" asp-action="Config">
+                Configurações
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" asp-controller="Private" asp-action="Terms">
-                Termos de Uso
+              <a class="nav-link" asp-controller="Private" asp-action="Config">
+                Eventos
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" asp-controller="Private" asp-action="Help">
-                Ajuda
+              <a class="nav-link" asp-controller="Private" asp-action="Config">
+                Clientes
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/">Logout</a>
+              <a class="nav-link" asp-controller="Private" asp-action="Config">
+                Locais
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" asp-controller="Private" asp-action="Logout">Logout</a>
             </li>
           </ul>
         </div>
@@ -63,7 +68,20 @@
     <main class="container">@RenderBody()</main>
 
     <footer class="border-top footer text-muted">
-      <div class="container">&copy; 2021 - Buffet</div>
+      <div class="container">&copy; 2021 - Buffet
+      &nbsp; &nbsp;
+      <a class="link" asp-controller="Private" asp-action="Policy">
+        Política de Privacidade
+      </a>
+      &nbsp; &nbsp;
+      <a class="link" asp-controller="Private" asp-action="Terms">
+        Termos de Uso
+      </a>
+      &nbsp; &nbsp;
+      <a class="link" asp-controller="Private" asp-action="Help">
+        Ajuda
+      </a>
+      </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

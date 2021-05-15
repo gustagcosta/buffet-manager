@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Buffet.Data;
 using Buffet.Models.Usuario;
 using Buffet.RequestModels;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace Buffet.Controllers
     public class UserController : Controller
     {
         private readonly UsuarioService _usuarioService;
+        private readonly DatabaseContext _databaseContext;
 
-        public UserController(UsuarioService usuarioService)
+        public UserController(UsuarioService usuarioService, DatabaseContext databaseContext)
         {
             _usuarioService = usuarioService;
+            _databaseContext = databaseContext;
         }
 
         public async Task<ActionResult> Login(UserRegisterRequest request)
@@ -73,6 +76,15 @@ namespace Buffet.Controllers
                 TempData["errors"] = e.Erros;
                 return Redirect("/Public/Register");
             }
+        }
+
+        public async Task<ActionResult> UpdateUser(UserRegisterRequest request)
+        {
+            // Pegar o usuário pelo ID do usuário logado 
+            // Fazer verificações
+            // Mudar os atributos
+            // Salve
+            return Redirect("Private/Index");
         }
     }
 }
