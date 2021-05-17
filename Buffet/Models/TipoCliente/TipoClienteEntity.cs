@@ -6,5 +6,10 @@ namespace Buffet.Models.TipoCliente
     {
         [Key] public int Id { get; set; }
         [Required] public string Descricao { get; set; }
+
+        public TipoClienteEntity(string descricao)
+        {
+            Descricao = descricao;
+        }
     }
 }

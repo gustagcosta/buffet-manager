@@ -3,6 +3,17 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Views\Private\Cliente\**" />
+      <Compile Remove="Views\Private\Evento\**" />
+      <Content Remove="Views\Private\Cliente\**" />
+      <Content Remove="Views\Private\Evento\**" />
+      <EmbeddedResource Remove="Views\Private\Cliente\**" />
+      <EmbeddedResource Remove="Views\Private\Evento\**" />
+      <None Remove="Views\Private\Cliente\**" />
+      <None Remove="Views\Private\Evento\**" />
+    </ItemGroup>
     
      <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.13" />
@@ -13,10 +24,5 @@
       </PackageReference>
       <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.4" />
     </ItemGroup>
-    
-     <ItemGroup>
-       <Folder Include="Views\Private\Cliente" />
-       <Folder Include="Views\Private\Evento" />
-     </ItemGroup>
 
 </Project>
