@@ -1,5 +1,6 @@
 using System;
 using Buffet.Models;
+using Buffet.Models.Acesso;
 using Buffet.Models.Cliente;
 using Buffet.Models.ClienteFisico;
 using Buffet.Models.ClienteJuridico;
@@ -30,5 +31,6 @@ namespace Buffet.Data
         public DbSet<SituacaoEventoEntity> SituacoesEventos { get; set; }
         public DbSet<TipoClienteEntity> TiposClientes { get; set; }
         public DbSet<TipoEventoEntity> TiposEventos {get; set; }
+        public DbSet<AcessoEntity> Acessos {get; set; }
     }
 }

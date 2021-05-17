@@ -1,4 +1,5 @@
 using Buffet.Data;
+using Buffet.Models.Acesso;
 using Buffet.Models.Usuario;
 using Buffet.Models.SituacaoConvidado;
 using Buffet.Models.SituacaoEvento;
@@ -44,6 +45,7 @@ namespace Buffet
             services.AddTransient<SituacaoConvidadoService>();
             services.AddTransient<SituacaoEventoService>();
             services.AddTransient<TipoEventoService>();
+            services.AddTransient<AcessoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

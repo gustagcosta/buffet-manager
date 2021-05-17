@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Buffet.Data;
+using Buffet.Models.Acesso;
 using Buffet.Models.Usuario;
 using Buffet.RequestModels;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +12,12 @@ namespace Buffet.Controllers
     public class UserController : Controller
     {
         private readonly UsuarioService _usuarioService;
-        private readonly DatabaseContext _databaseContext;
+        private readonly AcessoService _acessoService;
 
-        public UserController(UsuarioService usuarioService, DatabaseContext databaseContext)
+        public UserController(UsuarioService usuarioService, AcessoService acessoService)
         {
             _usuarioService = usuarioService;
-            _databaseContext = databaseContext;
+            _acessoService = acessoService;
         }
 
         public async Task<ActionResult> Login(UserRegisterRequest request)
@@ -36,6 +37,7 @@ namespace Buffet.Controllers
             try
             {
                 await _usuarioService.AutenticarUsuario(request.email, request.password);
+                await _acessoService.RegistrarLog(HttpContext.User);
                 return Redirect("/Private/Index");
             }
             catch (Exception e)
@@ -78,13 +80,25 @@ namespace Buffet.Controllers
             }
         }
 
-        public async Task<ActionResult> UpdateUser(UserRegisterRequest request)
+        public async Task<ActionResult> UpdateUser(UserUpdateRequest request)
         {
-            // Pegar o usuário pelo ID do usuário logado 
-            // Fazer verificações
-            // Mudar os atributos
-            // Salve
-            return Redirect("Private/Index");
+            if (request.newPasswordConfirm != request.newPassword)
+            {
+                ViewBag.error = "Novas senhas não coincidem!";
+                return View("~/Views/Private/Panel.cshtml");
+            }
+
+            try
+            {
+                await _usuarioService.UpdateUsuario(HttpContext.User, request.oldPassword, request.newPassword);
+                ViewBag.mensagem = "Editado com sucesso!";
+                return View("~/Views/Private/Panel.cshtml");
+            }
+            catch (UpdateUsuarioException e)
+            {
+                ViewBag.erros = e.Erros;
+                return View("~/Views/Private/Panel.cshtml");
+            }
         }
     }
 }

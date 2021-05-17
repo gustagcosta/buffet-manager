@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Buffet.Data;
+using Buffet.Migrations;
 using Buffet.Models;
 using Buffet.Models.SituacaoConvidado;
 using Buffet.Models.Usuario;
@@ -13,18 +14,16 @@ namespace Buffet.Controllers
     public class PrivateController : Controller
     {
         private readonly ILogger<PrivateController> _logger;
-        private readonly DatabaseContext _databaseContext;
         private readonly UsuarioService _usuarioService;
 
         public PrivateController(ILogger<PrivateController> logger, DatabaseContext databaseContext, UsuarioService usuarioService)
         {
             _logger = logger;
-            _databaseContext = databaseContext;
             _usuarioService = usuarioService;
         }
 
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         }
@@ -50,8 +49,10 @@ namespace Buffet.Controllers
         }
         
         [Authorize]
-        public IActionResult Panel()
+        public async Task<IActionResult> Panel()
         {
+            var acessos = await _usuarioService.getAcessos(HttpContext.User);
+            ViewBag.acessos = acessos;
             return View();
         }
 

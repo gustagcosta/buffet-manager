@@ -22,8 +22,7 @@ namespace Buffet.Controllers
         public async Task<IActionResult> Index()
         {
             var tipos = await _tipoEventoService.getAll();
-            var indexViewModel = new IndexViewModel();
-            indexViewModel.Tipos = tipos;
+            var indexViewModel = new IndexViewModel {Tipos = tipos};
             return View("~/Views/Private/TipoEvento/Index.cshtml", indexViewModel);
         }
         
@@ -44,10 +43,7 @@ namespace Buffet.Controllers
         {
             var tipo = await _tipoEventoService.getById(id);
             var tipos = await _tipoEventoService.getAll();
-            var indexViewModel = new IndexViewModel();
-            indexViewModel.Tipos = tipos;
-            indexViewModel.id = tipo.Id;
-            indexViewModel.descricao = tipo.Descricao;
+            var indexViewModel = new IndexViewModel {Tipos = tipos, id = tipo.Id, descricao = tipo.Descricao};
             return View("~/Views/Private/TipoEvento/Index.cshtml", indexViewModel);
         }
         
@@ -55,9 +51,7 @@ namespace Buffet.Controllers
         {
             await _tipoEventoService.destroy(id);
             var tipos = await _tipoEventoService.getAll();
-            var indexViewModel = new IndexViewModel();
-            indexViewModel.mensagem = "Deletado com sucesso!";
-            indexViewModel.Tipos = tipos;
+            var indexViewModel = new IndexViewModel {mensagem = "Deletado com sucesso!", Tipos = tipos};
             return View("~/Views/Private/TipoEvento/Index.cshtml", indexViewModel);
         }
         

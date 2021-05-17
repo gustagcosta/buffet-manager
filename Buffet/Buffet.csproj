@@ -13,5 +13,21 @@
       </PackageReference>
       <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.4" />
     </ItemGroup>
+    
+     <ItemGroup>
+       <Compile Remove="ViewModels\Private\Panel\**" />
+     </ItemGroup>
+    
+     <ItemGroup>
+       <EmbeddedResource Remove="ViewModels\Private\Panel\**" />
+     </ItemGroup>
+    
+     <ItemGroup>
+       <None Remove="ViewModels\Private\Panel\**" />
+     </ItemGroup>
+    
+     <ItemGroup>
+       <Content Remove="ViewModels\Private\Panel\**" />
+     </ItemGroup>
 
 </Project>
