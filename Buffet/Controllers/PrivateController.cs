@@ -78,7 +78,7 @@ namespace Buffet.Controllers
         [Authorize]
         public IActionResult Local()
         {
-            return View();
+            return RedirectToAction("Index", "Local");
         }
         
         [Authorize]

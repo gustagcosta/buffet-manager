@@ -1,0 +1,54 @@
+﻿@model Buffet.ViewModels.Private.Local.LocalViewModel;
+
+@{
+    ViewData["Title"] = "Locais";
+}
+
+<div class="card m-2">
+    <div class="card-body">
+        <h3>Criar novo local</h3>
+        <form class="mt-3" method="post" asp-controller="Local" asp-action="Store">
+            <input type="hidden" value="@if (Model.Id != 0) {@Model.Id }" name="id">
+            <div class="form-group">
+                <label for="descricao">Descrição</label>
+                <input required value="@if (Model.Descricao != null) {@Model.Descricao }" type="text" name="descricao" class="form-control" id="descricao">
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <input required value="@if (Model.Estado != null) {@Model.Estado }" type="text" name="estado" class="form-control" id="estado">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="cidade">Cidade</label>
+                        <input required type="text" value="@if (Model.Cidade != null) {@Model.Cidade }" name="cidade" class="form-control" id="cidade">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="bairro">Bairro</label>
+                        <input required type="text" value="@if (Model.Bairro != null) {@Model.Bairro }" name="bairro" class="form-control" id="bairro">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="rua">Rua</label>
+                        <input required type="text" value="@if (Model.Rua != null) {@Model.Rua }" name="rua" class="form-control" id="rua">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="descricao">Número</label>
+                        <input required type="text" value="@if (Model.Numero != 0) {@Model.Numero }" name="numero" class="form-control" id="numero">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+</div>
+

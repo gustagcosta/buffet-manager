@@ -1,0 +1,46 @@
+﻿@model Buffet.ViewModels.Private.Local.LocalViewModel;
+
+@{
+    ViewData["Title"] = "Locais";
+}
+
+<div class="card mt-2">
+    <div class="card-body">
+        <h3>Locais</h3>
+        <div>
+            <form method="post" asp-controller="Local" asp-action="Index">
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <input type="text" name="descricao" class="form-control" id="descricao">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Pesquisar</button>
+                    <a asp-controller="Local" asp-action="Create" class="btn btn-success">Criar novo</a>
+                </div>
+            </form>
+        </div>
+        <div class="mt-3">
+            <table class="table table-striped">
+                <tr>
+                    <th style="width: 15%">Id</th>
+                    <th style="width: 55%">Descrição</th>
+                    <th style="width: 30%">Ações</th>
+                </tr>
+                @if (@Model != null)
+                {
+                    @foreach (var s in @Model.Locais)
+                    {
+                        <tr>
+                            <td>@s.Id</td>
+                            <td>@s.Descricao</td>
+                            <td>
+                                <a asp-controller="Local" asp-action="Edit" asp-route-id="@s.Id" class="btn btn-primary">Editar</a>
+                                <a class="ml-2 btn btn-danger" asp-controller="Local" asp-action="Destroy" asp-route-id="@s.Id" >Deletar</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>

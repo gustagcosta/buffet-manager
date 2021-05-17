@@ -31,7 +31,7 @@ namespace Buffet.Controllers
             var eventos = await _eventoService.getAll();
             var indexViewModel = new IndexViewModel();
             indexViewModel.Eventos = eventos;
-            return View("~/Views/Private/Evento/Index.cshtml", indexViewModel);
+            return View("~/Views/Private/Evento.cshtml", indexViewModel);
         }
 
         public async Task<IActionResult> Store(int id, string descricao, DateTime inicio, DateTime fim, ClienteEntity cliente, SituacaoEventoEntity situacao, string obs, TipoEventoEntity tipoEvento)
@@ -55,7 +55,7 @@ namespace Buffet.Controllers
             indexViewModel.Eventos = situacoes;
             indexViewModel.id = evento.Id;
             indexViewModel.descricao = evento.Descricao;
-            return View("~/Views/Private/Evento/Index.cshtml", indexViewModel);
+            return View("~/Views/Private/Evento.cshtml", indexViewModel);
         }
 
         public async Task<IActionResult> Destroy(int id)
@@ -65,7 +65,7 @@ namespace Buffet.Controllers
             var indexViewModel = new IndexViewModel();
             indexViewModel.mensagem = "Deletado com sucesso!";
             indexViewModel.Eventos = eventos;
-            return View("~/Views/Private/Evento/Index.cshtml", indexViewModel);
+            return View("~/Views/Private/Evento.cshtml", indexViewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
