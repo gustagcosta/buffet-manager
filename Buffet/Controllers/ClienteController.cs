@@ -14,9 +14,9 @@ namespace Buffet.Controllers
     public class CienteController
     {
         private readonly ClienteService _clienteService;
-        private readonly ILogger<ClienteController> _logger;
+        private readonly ILogger<CienteController> _logger;
 
-        public CienteController(ClienteService clienteService, ILogger<ClienteController> logger)
+        public CienteController(ClienteService clienteService, ILogger<CienteController> logger)
         {
             _clienteService = clienteService;
             _logger = logger;

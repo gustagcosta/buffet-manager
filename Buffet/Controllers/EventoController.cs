@@ -14,12 +14,12 @@ using System.Threading.Tasks;
 
 namespace Buffet.Controllers
 {
-    public class ClienteController : Controller
+    public class EventoController : Controller
     {
         private readonly EventoService _eventoService;
-        private readonly ILogger<ClienteController> _logger;
+        private readonly ILogger<EventoController> _logger;
 
-        public ClienteController(EventoService eventoService, ILogger<ClienteController> logger)
+        public EventoController(EventoService eventoService, ILogger<EventoController> logger)
         {
             _eventoService = eventoService;
             _logger = logger;

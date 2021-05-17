@@ -68,6 +68,24 @@ namespace Buffet.Controllers
         {
             return View();
         }
+        
+        [Authorize]
+        public IActionResult Evento()
+        {
+            return View();
+        }
+        
+        [Authorize]
+        public IActionResult Local()
+        {
+            return View();
+        }
+        
+        [Authorize]
+        public IActionResult Cliente()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
