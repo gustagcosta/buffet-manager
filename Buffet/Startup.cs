@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Buffet.Models.Evento;
+using Buffet.Models.Cliente;
 
 namespace Buffet
 {
@@ -46,6 +48,8 @@ namespace Buffet
             services.AddTransient<SituacaoEventoService>();
             services.AddTransient<TipoEventoService>();
             services.AddTransient<AcessoService>();
+            services.AddTransient<EventoService>();
+            services.AddTransient<ClienteService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
