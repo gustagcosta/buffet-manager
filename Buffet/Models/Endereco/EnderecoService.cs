@@ -15,5 +15,10 @@ namespace Buffet.Models.Endereco
         {
             return await _databaseContext.Enderecos.FindAsync(id);
         }
+
+        public async Task<EnderecoEntity> getById(int id)
+        {
+            return await _databaseContext.Enderecos.FindAsync(id);
+        }
     }
 }

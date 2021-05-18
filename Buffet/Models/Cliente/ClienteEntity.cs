@@ -23,5 +23,9 @@ namespace Buffet.Models.Cliente
             Observacoes = observacoes;
             CriadoEm = criadoEm;
         }
+
+        public ClienteEntity()
+        {
+        }
     }
 }

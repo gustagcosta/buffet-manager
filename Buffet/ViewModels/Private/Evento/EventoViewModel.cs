@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Buffet.ViewModels.Private.Evento
 {
-    public class IndexViewModel
+    public class EventoViewModel
     {
         public int id { get; set; }
         public string descricao { get; set; }

@@ -17,22 +17,32 @@ namespace Buffet.Controllers
     public class ClienteController : Controller
     {
         private readonly ClienteService _clienteService;
+        private readonly TipoClienteService _tipoClienteService;
+        private readonly EnderecoService _enderecoService;
         private readonly ILogger<ClienteController> _logger;
 
         public ClienteController(ClienteService clienteService, ILogger<ClienteController> logger)
         {
             _clienteService = clienteService;
             _logger = logger;
+            
         }
 
         // GET
         public async Task<IActionResult> Index()
         {
             var clientes = await _clienteService.getAll();
-            var indexViewModel = new IndexViewModel();
-            indexViewModel.Clientes = clientes;
-            return View("~/Views/Private/Cliente.cshtml", indexViewModel);
+            var clienteViewModel = new ClienteViewModel();
+            clienteViewModel.Clientes = clientes;
+            return View("~/Views/Private/ListaCliente.cshtml", clienteViewModel);
         }
+
+        public IActionResult Create()
+        {
+            var cvm = new ClienteViewModel();
+            return View("~/Views/Private/CadastroCliente.cshtml", cvm);
+        }
+
 
         public async Task<IActionResult> Store(int id, string nomeCliente, string tipoCliente, 
                                                 string emailCliente, string enderecoRuaCliente, string enderecoBairroCliente, string enderecoEstadoCliente,
@@ -51,23 +61,25 @@ namespace Buffet.Controllers
             return RedirectToAction("Index");
         }
 
-        //public async Task<IActionResult> Edit(int id)
-        //{
-        //    var cliente = await _clienteService.getById(id);
-        //    var indexViewModel = new IndexViewModel();
-        //    indexViewModel.id = cliente.Id;
-        //    return View("~/Views/Private/Cliente.cshtml", indexViewModel);
-        //}
+        public async Task<IActionResult> Edit(int id)
+        {
+            var cliente = await _clienteService.getById(id);
+            EnderecoEntity endereco = await _enderecoService.getById(cliente.Endereco.Id);
+            TipoClienteEntity tipo = await _tipoClienteService.getById(cliente.TipoCliente.Id);
+            var clienteViewModel = new ClienteViewModel(id, cliente.Nome,
+                tipo.Descricao, cliente.Email, endereco.Estado, endereco.Cidade, endereco.Bairro, endereco.Rua, endereco.Numero, cliente.Observacoes);
+            return View("~/Views/Private/CadastroCliente.cshtml", clienteViewModel);
+        }
 
-        //public async Task<IActionResult> Destroy(int id)
-        //{
-        //    //await _clienteService.destroy(id);
-        //    var eventos = await _clienteService.getAll();
-        //    var indexViewModel = new IndexViewModel();
-        //    indexViewModel.mensagem = "Deletado com sucesso!";
-        //    indexViewModel.Clientes = eventos;
-        //    return View("~/Views/Private/Cliente.cshtml", indexViewModel);
-        //}
+        public async Task<IActionResult> Destroy(int id)
+        {
+            await _clienteService.destroy(id);
+            var clientes = await _clienteService.getAll();
+            var clienteViewModel = new ClienteViewModel();
+            clienteViewModel.mensagem = "Deletado com sucesso!";
+            clienteViewModel.Clientes = clientes;
+            return View("~/Views/Private/ListaCliente.cshtml", clienteViewModel);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

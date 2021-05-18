@@ -48,12 +48,12 @@ namespace Buffet.Models.Cliente
         //    await _databaseContext.SaveChangesAsync();
         //}
 
-        //public async Task destroy(int id)
-        //{
-        //    ClienteEntity ce = new ClienteEntity();
-        //    ce.Id = id;
-        //    _databaseContext.Clientes.Remove(ce);
-        //    await _databaseContext.SaveChangesAsync();
-        //}
+        public async Task destroy(int id)
+        {
+            ClienteEntity ce = new ClienteEntity();
+            ce.Id = id;
+            _databaseContext.Clientes.Remove(ce);
+            await _databaseContext.SaveChangesAsync();
+        }
     }
 }

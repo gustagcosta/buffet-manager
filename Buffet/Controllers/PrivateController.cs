@@ -84,7 +84,7 @@ namespace Buffet.Controllers
         [Authorize]
         public IActionResult Cliente()
         {
-            return View();
+            return RedirectToAction("Index", "Cliente");
         }
         
        
