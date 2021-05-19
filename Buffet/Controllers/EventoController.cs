@@ -77,12 +77,20 @@ namespace Buffet.Controllers
                 var situacao = await _situacaoEventoService.getById(situacaoId);
                 var local = await _localService.GetById(localId);
                 var inicio = dataInicio.Date + horaInicio.TimeOfDay;
-                var fim = dataInicio.Date + horaInicio.TimeOfDay;
+                var fim = dataFim.Date + horaFim.TimeOfDay;
                 await _eventoService.store(descricao, tipo, inicio, fim, cliente, situacao, local,  obs, criadoEm);
             }
             else
             {
-                await _eventoService.update(id, descricao);
+                
+                var editadoEm = DateTime.Now;
+                var tipo = await _tipoEventoService.getById(tipoCliente);
+                var cliente = await _clienteService.getById(clienteId);
+                var situacao = await _situacaoEventoService.getById(situacaoId);
+                var local = await _localService.GetById(localId);
+                var inicio = dataInicio.Date + horaInicio.TimeOfDay;
+                var fim = dataFim.Date + horaFim.TimeOfDay;
+                await _eventoService.update(id, descricao, tipo, inicio, fim, cliente, situacao, local, obs, editadoEm);
             }
             return RedirectToAction("Index");
         }
@@ -107,7 +115,9 @@ namespace Buffet.Controllers
                 tipos = listaTipos,
                 Clientes = listaClientes,
                 Locais = locais,
-                local = evento.Local
+                local = evento.Local,
+                obs = evento.Observacoes
+
             };
             
             

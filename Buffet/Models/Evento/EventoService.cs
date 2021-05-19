@@ -56,11 +56,19 @@ namespace Buffet.Models.Evento
             return eventos.ToList();
         }
 
-        public async Task update(int id, string descricao)
+        public async Task update(int id, string descricao, TipoEventoEntity tipo, DateTime inicio, DateTime fim, ClienteEntity cliente, 
+            SituacaoEventoEntity situacao, LocalEntity local, string obs, DateTime editadoEm)
         {
-            EventoEntity sce = new EventoEntity();
+            EventoEntity sce = await getById(id);
             sce.Descricao = descricao;
-            sce.Id = id;
+            sce.TipoEvento = tipo;
+            sce.Inicio = inicio;
+            sce.Fim = fim;
+            sce.Cliente = cliente;
+            sce.SituacaoEvento = situacao;
+            sce.Local = local;
+            sce.Observacoes = obs;
+            sce.EditadoEm = editadoEm;
             _databaseContext.Eventos.Update(sce);
             await _databaseContext.SaveChangesAsync();
         }
@@ -76,7 +84,7 @@ namespace Buffet.Models.Evento
         public async Task<List<EventoEntity>> buscaEventos(string desc, DateTime inicio, DateTime fim)
         {
 
-            var listaEventos= _databaseContext.Eventos.AsQueryable();
+            var listaEventos = _databaseContext.Eventos.AsQueryable();
 
             if (desc != null)
             {

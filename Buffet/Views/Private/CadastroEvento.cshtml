@@ -20,13 +20,20 @@
                      <select id="tipoCliente"name="tipoCliente" class="form-control">
                         @foreach (var t in Model.tipos)
                         {
-                            @if(Model.tipoEvento.Id == t.Id)
+                            @if( Model.id == 0 )
                             {
-                                <option selected value="@t.Id">@t.Descricao</option>       
+                                <option value="@t.Id">@t.Descricao</option>
                             } 
                             else
                             {
-                                <option value="@t.Id">@t.Descricao</option>
+                                if (Model.tipoEvento.Equals(t))
+                                {
+                                    <option selected value="@t.Id">@t.Descricao</option>       
+                                }
+                                else
+                                {       
+                                    <option value="@t.Id">@t.Descricao</option>
+                                }
                             }
                         }
                     </select>
@@ -57,16 +64,23 @@
                 <div class="form-group col-4">
                     <label for="enderecoEstadoCliente">Cliente</label>
                     <select id="cliente" name="clienteId" class="form-control">
-                        @foreach (var c in Model.Clientes)
+                        @foreach (var t in Model.Clientes)
                         {
-                            @if (Model.Cliente.Id == c.Id)
+                            @if (Model.id == 0)
                             {
-                                <option selected value="@c.Id">@c.Nome</option>
-
+                                <option value="@t.Id">@t.Nome</option>
                             }
                             else
                             {
-                                <option value="@c.Nome">@c.Nome</option>
+                                if (Model.Cliente.Equals(t))
+                                {
+                                    <option selected value="@t.Id">@t.Nome</option>
+
+                                }
+                                else
+                                {
+                                    <option value="@t.Id">@t.Nome</option>
+                                }
                             }
                         }
                     </select>
@@ -74,16 +88,23 @@
                 <div class=" form-group col-4">
                     <label for="enderecoCidadeCliente">Situação do Evento</label>
                     <select id="situacao" name="situacaoId" class="form-control">
-                        @foreach (var s in Model.Situacoes)
+                        @foreach (var t in Model.Situacoes)
                         {
-                            @if (Model.SituacaoEvento.Id == s.Id)
+                            @if (Model.id == 0)
                             {
-                                <option selected value="@s.Id">@s.Descricao</option>
-
+                                <option value="@t.Id">@t.Descricao</option>
                             }
                             else
                             {
-                                <option value="@s.Id">@s.Descricao</option>
+                                if (Model.SituacaoEvento.Equals(t))
+                                {
+                                    <option selected value="@t.Id">@t.Descricao</option>
+
+                                }
+                                else
+                                {
+                                    <option value="@t.Id">@t.Descricao</option>
+                                }
                             }
                         }
                     </select>
@@ -91,16 +112,23 @@
                 <div class="form-group col-4">
                     <label for="local">Local</label>
                     <select id="local" name="localId" class="form-control">
-                        @foreach (var l in Model.Locais)
+                        @foreach (var t in Model.Locais)
                         {
-                            @if (Model.local.Id == l.Id)
+                            @if (Model.id == 0)
                             {
-                                <option selected value="@l.Id">@l.Descricao</option>
-
+                                <option value="@t.Id">@t.Descricao</option>
                             }
                             else
                             {
-                                <option value="@l.Id">@l.Descricao</option>
+                                if (Model.Cliente.Equals(t))
+                                {
+                                    <option selected value="@t.Id">@t.Descricao</option>
+
+                                }
+                                else
+                                {
+                                    <option value="@t.Id">@t.Descricao</option>
+                                }
                             }
                         }
                     </select>
@@ -108,7 +136,7 @@
             </div>
             <div class="form-group">
                 <label for="obsCliente">Observações</label>
-                <textarea name="obs" class="form-control" id="obs">@Model.obs</textarea>
+                <textarea name="obs" value="@Model.obs" class="form-control" id="obs">@Model.obs</textarea>
             </div>
 
             <div class="col-12 d-flex justify-content-end"><button type="submit" class="btn btn-primary">Enviar</button></div>
