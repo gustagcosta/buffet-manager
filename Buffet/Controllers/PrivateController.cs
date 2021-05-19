@@ -72,7 +72,7 @@ namespace Buffet.Controllers
         [Authorize]
         public IActionResult Evento()
         {
-            return View();
+            return RedirectToAction("Index", "Evento");
         }
         
         [Authorize]

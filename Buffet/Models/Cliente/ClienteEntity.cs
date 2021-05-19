@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Buffet.Models.Endereco;
 using Buffet.Models.TipoCliente;
@@ -15,6 +16,7 @@ namespace Buffet.Models.Cliente
         [Required] public string Observacoes { get; set; }
         [Required] public DateTime CriadoEm { get; set; }
         [Required] public DateTime EditadoEm { get; set; }
+        [Required] public List<EventoEntity> Eventos{ get; set; }
 
         public ClienteEntity(string nome,  string email,  string observacoes, DateTime criadoEm)
         {

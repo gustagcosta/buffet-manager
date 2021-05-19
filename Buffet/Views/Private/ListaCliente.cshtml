@@ -7,8 +7,14 @@
 <div class="card mt-2">
     <div class="card-body">
         <h3>Lista de Clientes</h3>
+        @if (@Model.mensagem != "") 
+        {
+            <div>
+                <p class="alert-danger">@Model.mensagem</p>
+            </div>
+        }
         <div>
-            <form method="post" asp-controller="Cliente" asp-action="Index">
+            <form method="get" asp-controller="Cliente" asp-action="ClientesFiltro">
                 <div class="form-row">
                     <div class="col-6">
                         <label for="descricao">Nome</label>
@@ -31,6 +37,7 @@
                     <th >Nome</th>
                     <th >E-mail</th>
                     <th >Observações</th>
+                    <th>Eventos</th>
                     <th></th>
                 </tr>
                 @if (@Model != null)
@@ -41,6 +48,7 @@
                             <td>@c.Nome</td>
                             <td>@c.Email</td>
                             <td>@c.Observacoes</td>
+                            <td></td>
                             <td>
                                 <a asp-controller="Cliente" asp-action="Edit" asp-route-id="@c.Id" class="btn btn-primary">Ver/Editar</a>
                                 <a class="ml-2 btn btn-danger" asp-controller="Cliente" asp-action="Destroy" asp-route-id="@c.Id">Deletar</a>

@@ -11,15 +11,7 @@ namespace Buffet.Models.Endereco
         [Required] public string Rua { get; set; }
         [Required] public int Numero { get; set; }
 
-        public EnderecoEntity( string estado, string cidade, string bairro, string rua, int numero)
-        {
-            Estado = estado;
-            Cidade = cidade;
-            Bairro = bairro;
-            Rua = rua;
-            Numero = numero;
-        }
-
+        
         public EnderecoEntity()
         {
         }

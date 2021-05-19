@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using Buffet.Models.Cliente;
+using Buffet.Models.Local;
 using Buffet.Models.SituacaoEvento;
 using Buffet.Models.TipoEvento;
 
@@ -16,6 +17,7 @@ namespace Buffet.Models
         [Required] public ClienteEntity Cliente { get; set; }
         [Required] public SituacaoEventoEntity SituacaoEvento { get; set; }
         [Required] public string Observacoes { get; set; }
+        [Required] public LocalEntity Local{ get; set; }
         [Required] public DateTime CriadoEm { get; set; }
         [Required] public DateTime EditadoEm { get; set; }
     }

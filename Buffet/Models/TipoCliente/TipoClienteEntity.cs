@@ -11,5 +11,9 @@ namespace Buffet.Models.TipoCliente
         {
             Descricao = descricao;
         }
+
+        public TipoClienteEntity()
+        {
+        }
     }
 }
