@@ -48,7 +48,9 @@
                             <td>@c.Nome</td>
                             <td>@c.Email</td>
                             <td>@c.Observacoes</td>
-                            <td></td>
+                            <td>
+                                <a asp-controller="Cliente" asp-action="VerEventos" asp-route-id="@c.Id" class="btn btn-primary">Ver</a>
+                            </td>
                             <td>
                                 <a asp-controller="Cliente" asp-action="Edit" asp-route-id="@c.Id" class="btn btn-primary">Ver/Editar</a>
                                 <a class="ml-2 btn btn-danger" asp-controller="Cliente" asp-action="Destroy" asp-route-id="@c.Id">Deletar</a>

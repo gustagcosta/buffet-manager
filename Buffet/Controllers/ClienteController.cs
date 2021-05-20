@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Buffet.ViewModels.Private.Local;
 
 namespace Buffet.Controllers
 {
@@ -31,9 +32,6 @@ namespace Buffet.Controllers
             _eventoService = eventoService;
             _logger = logger;
         }
-
-
-
 
         // GET
         public async Task<IActionResult> Index()
@@ -106,21 +104,17 @@ namespace Buffet.Controllers
             var cliente =  _clienteService.getByIdToDestroy(id);
             var clienteViewModel = new ClienteViewModel();
             var listaEventos = _eventoService.getEventosByCliente(id);
+            
             if(listaEventos.Count > 0) 
             {
                 clienteViewModel.mensagem = "Cliente com evento agendado não pode ser excluído!";
-                clienteViewModel.Clientes = clientes
-                return View("~/Views/Private/ListaCliente.cshtml", clienteViewModel);
-            }
-            else
-            {
-                await _clienteService.destroy(cliente);
-                clienteViewModel.mensagem = "Deletado com sucesso!";
                 clienteViewModel.Clientes = clientes;
                 return View("~/Views/Private/ListaCliente.cshtml", clienteViewModel);
             }
 
-
+            await _clienteService.destroy(cliente);
+            clienteViewModel.mensagem = "Deletado com sucesso!";
+            clienteViewModel.Clientes = clientes;
             return View("~/Views/Private/ListaCliente.cshtml", clienteViewModel);
         }
 
@@ -128,6 +122,14 @@ namespace Buffet.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult VerEventos(int id)
+        {
+            List<EventoEntity> eventos = _eventoService.GetEventosByIdCliente(id);
+            var elv = new EventosLocalViewModel();
+            elv.Eventos = eventos;
+            return View("~/Views/Private/EventosCliente.cshtml", elv);
         }
     }
 }

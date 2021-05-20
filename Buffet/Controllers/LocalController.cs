@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Buffet.Models;
 using Buffet.Models.Endereco;
+using Buffet.Models.Evento;
 using Buffet.Models.Local;
 using Buffet.RequestModels;
 using Buffet.ViewModels.Private.Local;
@@ -12,11 +14,13 @@ namespace Buffet.Controllers
     {
         private readonly LocalService _localService;
         private readonly EnderecoService _enderecoService;
+        private readonly EventoService _eventoService;
 
-        public LocalController(LocalService localService, EnderecoService enderecoService)
+        public LocalController(LocalService localService, EnderecoService enderecoService, EventoService eventoService)
         {
             _localService = localService;
             _enderecoService = enderecoService;
+            _eventoService = eventoService;
         }
 
         public async Task<IActionResult> Index(string descricao)
@@ -57,7 +61,7 @@ namespace Buffet.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var local = await _localService.GetById(id);
-            var endereco = await _enderecoService.GetByIdLocal(local.Endereco.Id);
+            var endereco = await _enderecoService.getById(local.Endereco.Id);
             var lvm = new LocalViewModel()
             {
                 Id = local.Id,
@@ -78,6 +82,14 @@ namespace Buffet.Controllers
             var locais = await _localService.GetAll();
             var localViewModel = new LocalViewModel() {Locais = locais};
             return View("~/Views/Private/Local/Local.cshtml", localViewModel);
+        }
+
+        public async Task<IActionResult> VerEventos(int id)
+        {
+            List<EventoEntity> eventos =  await _eventoService.GetEventosByLocal(id);
+            EventosLocalViewModel elv = new EventosLocalViewModel();
+            elv.Eventos = eventos;
+            return View("~/Views/Private/Local/EventosLocal.cshtml", elv);
         }
     }
 }

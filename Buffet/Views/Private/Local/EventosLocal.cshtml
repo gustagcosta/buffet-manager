@@ -1,0 +1,41 @@
+@model Buffet.ViewModels.Private.Local.EventosLocalViewModel;
+
+@{
+    ViewData["Title"] = "Eventos no local";
+}
+
+<div class="card mt-2">
+    <div class="card-body">
+        <h3>Eventos</h3>
+        <div class="mt-3">
+            <table class="table table-striped">
+                <tr>
+                    <td>Id</td>
+                    <th>Descrição</th>
+                    <th>Observações</th>
+                    <th>Inicio</th>
+                    <th>Fim</th>
+
+                @if (@Model != null && @Model.Eventos.Count > 0)
+                {
+                    @foreach (var s in @Model.Eventos)
+                    {
+                        <tr>
+                            <td>@s.Id</td>
+                            <td>@s.Descricao</td>
+                            <td>@s.Observacoes</td>
+                            <td>@s.Inicio</td>
+                            <td>@s.Fim</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="2">Nenhum evento cadastrado com esse local!</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

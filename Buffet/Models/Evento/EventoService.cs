@@ -90,18 +90,32 @@ namespace Buffet.Models.Evento
             {
                 listaEventos = listaEventos.Where(e => e.Descricao.Contains(desc));
             }
+            
             if (inicio != DateTime.MinValue)
             {
                 listaEventos = listaEventos.Where(c => c.Inicio >= (inicio));
             }
+            
             if (fim != DateTime.MaxValue)
             {
                 listaEventos = listaEventos.Where(c => c.Fim <= (fim));
             }
-
-
+            
             await _databaseContext.SaveChangesAsync();
+            
             return listaEventos.ToList();
+        }
+
+        public async Task<List<EventoEntity>> GetEventosByLocal(int id)
+        {
+            var eventos = _databaseContext.Eventos.Include( e => e.Local).ToList();
+            return eventos.Where(e => e.Local.Id == id).ToList();
+        }
+        
+        public List<EventoEntity> GetEventosByIdCliente(int id)
+        {
+            var eventos = _databaseContext.Eventos.Include( e => e.Cliente).ToList();
+            return eventos.Where(e => e.Cliente.Id == id).ToList();
         }
     }
 }
