@@ -54,6 +54,12 @@ namespace Buffet.Models.Cliente
             
             return cliente;
         }
+        
+        public  ClienteEntity getByIdToDestroy(int id)
+        {
+            ClienteEntity cliente = _databaseContext.Clientes.Find(id);
+            return cliente;
+        }
 
         public async Task update(int id, string nomeCliente, string tipoCliente,
                                                 string emailCliente, string enderecoRuaCliente, string enderecoBairroCliente, string enderecoEstadoCliente,
@@ -80,11 +86,9 @@ namespace Buffet.Models.Cliente
             await _databaseContext.SaveChangesAsync();
         }
 
-        public async Task destroy(int id)
+        public async Task destroy(ClienteEntity ce)
         {
-            ClienteEntity ce = new ClienteEntity();
-            ce.Id = id;
-            _databaseContext.Clientes.Remove(ce);
+             _databaseContext.Clientes.Remove(ce);
             await _databaseContext.SaveChangesAsync();
         }
         

@@ -22,7 +22,7 @@ namespace Buffet.Controllers
         private readonly EventoService _eventoService;
         private readonly ILogger<ClienteController> _logger;
 
-        public ClienteController(ClienteService clienteService, TipoClienteService tipoClienteService, EnderecoService enderecoService, 
+        public ClienteController(ClienteService clienteService, TipoClienteService tipoClienteService, EnderecoService enderecoService,
             EventoService eventoService, ILogger<ClienteController> logger)
         {
             _clienteService = clienteService;
@@ -39,7 +39,7 @@ namespace Buffet.Controllers
         public async Task<IActionResult> Index()
         {
             var clientes = await _clienteService.getAll();
-            
+
             var clienteViewModel = new ClienteViewModel();
             clienteViewModel.Clientes = clientes;
             return View("~/Views/Private/ListaCliente.cshtml", clienteViewModel);
@@ -50,7 +50,7 @@ namespace Buffet.Controllers
             var cvm = new ClienteViewModel();
             return View("~/Views/Private/CadastroCliente.cshtml", cvm);
         }
-        
+
         public async Task<IActionResult> ClientesFiltroAsync(string buscaNome, string buscaEmail)
         {
 
@@ -60,21 +60,21 @@ namespace Buffet.Controllers
         }
 
 
-        public async Task<IActionResult> Store(int id, string nomeCliente, string tipoCliente, 
+        public async Task<IActionResult> Store(int id, string nomeCliente, string tipoCliente,
                                                 string emailCliente, string enderecoRuaCliente, string enderecoBairroCliente, string enderecoEstadoCliente,
                                                 string enderecoCidadeCliente, int enderecoNumCliente, string obsCliente)
         {
             if (id == 0)
             {
                 var criadoEm = DateTime.Today;
-                await _clienteService.store(nomeCliente, tipoCliente, emailCliente, enderecoRuaCliente, enderecoBairroCliente, enderecoEstadoCliente, 
+                await _clienteService.store(nomeCliente, tipoCliente, emailCliente, enderecoRuaCliente, enderecoBairroCliente, enderecoEstadoCliente,
                                             enderecoCidadeCliente, enderecoNumCliente, obsCliente, criadoEm);
             }
             else
             {
                 var editadoEm = DateTime.Today;
                 var eventos = _eventoService.getEventosByCliente(id);
-                await _clienteService.update(id, nomeCliente, tipoCliente, emailCliente, enderecoRuaCliente, enderecoBairroCliente, enderecoEstadoCliente, 
+                await _clienteService.update(id, nomeCliente, tipoCliente, emailCliente, enderecoRuaCliente, enderecoBairroCliente, enderecoEstadoCliente,
                     enderecoCidadeCliente, enderecoNumCliente, obsCliente, editadoEm, eventos);
             }
             return RedirectToAction("Index");
@@ -103,18 +103,24 @@ namespace Buffet.Controllers
         public async Task<IActionResult> Destroy(int id)
         {
             var clientes = await _clienteService.getAll();
-            var cliente = await _clienteService.getById(id);
+            var cliente =  _clienteService.getByIdToDestroy(id);
             var clienteViewModel = new ClienteViewModel();
-            if(cliente.Eventos.Capacity > 0)
+            var listaEventos = _eventoService.getEventosByCliente(id);
+            if(listaEventos.Count > 0) 
             {
                 clienteViewModel.mensagem = "Cliente com evento agendado não pode ser excluído!";
-                clienteViewModel.Clientes = clientes;
-            } else
-            {
-                await _clienteService.destroy(id);
-                clienteViewModel.mensagem = "Deletado com sucesso!";
+                clienteViewModel.Clientes = clientes
+                return View("~/Views/Private/ListaCliente.cshtml", clienteViewModel);
             }
-            clienteViewModel.Clientes = clientes;
+            else
+            {
+                await _clienteService.destroy(cliente);
+                clienteViewModel.mensagem = "Deletado com sucesso!";
+                clienteViewModel.Clientes = clientes;
+                return View("~/Views/Private/ListaCliente.cshtml", clienteViewModel);
+            }
+
+
             return View("~/Views/Private/ListaCliente.cshtml", clienteViewModel);
         }
 
